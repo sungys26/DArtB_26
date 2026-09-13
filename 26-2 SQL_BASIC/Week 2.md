@@ -91,8 +91,8 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 ## 2-3. 데이터 탐색
 
 **‼️순서 : FROM → WHERE → SELECT** <br>
-작성 예시
 ```
+<작성 예시>
 SElECT
 Col1 As new_name,
 Col2,
