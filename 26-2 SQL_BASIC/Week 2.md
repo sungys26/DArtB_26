@@ -87,19 +87,36 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 > - 날씨
 > - 페이스북 광고 데이터
 <br>
+
 ## 2-3. 데이터 탐색
-### 01. SELECT
 ```
-✅
+순서 : FROM WHERE SELECT
+작성 예시 :
+SElECT
+Col1 As new_name,
+Col2,
+Col3
+FROM Datatset.Table
+WHERE
+Col1 = 1 
 ```
+### 01. FROM 문법
+```
+✅어떤 테이블에서 데이터를 확인할 것인가?
+```
+입력 방식 : Dataset.Table (BigQuery) / 테이블명만 써도 가능한 경우 有
 
-## (선택) 03.
-
+### 02. WHERE 문법
 ```
-개념 이름:
-개념 설명:
-헷갈린 점:
+✅ 만약 원하는 조건이 있다면 어떤 조건인가?
 ```
+입력 방식 : Col = 1 -> 컬럼 1에서 값이 1인 것만 가져오겠다는 조건문
+### 01. SELECT 문법
+```
+✅ 테이블의 어떤 컬럼을 출력할 것인가?
+```
+입력 방식 : Col1 , Col2 , Col3 
+> Col1 AS new_name -> 컬럼 1의 내용을 as 뒤에 있는 새로운 이름으로 변경
 
 ---
 
