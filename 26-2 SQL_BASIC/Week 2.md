@@ -150,9 +150,15 @@ Col1 = 1
 풀이 과정:
 
 ```
-- 테이블에서 확인한 컬럼:
+- 테이블에서 확인한 컬럼: ANIMAL_ID, ANIMAL_TYPE, DATETIME, INTAKE_CONDITION, NAME, SEX_UPON_INTAKE
 - SELECT와 FROM을 작성한 방식:
+SELECT ANIMAL_ID, ANIMAL_TYPE, DATETIME, INTAKE_CONDITION, NAME, SEX_UPON_INTAKE
+  FROM ANIMAL_INS
+  ORDER BY ANIMAL_ID;
 - 새로 배운 점:
+  - SELECT * 로도 모든 컬럼을 조회할 수 있지만, 컬럼명을 직접 나열하면
+    출력 순서를 원하는 대로 지정할 수 있고 가독성도 좋아진다.
+  - ORDER BY는 기본적으로 오름차순이다.
 ```
 
 <!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
