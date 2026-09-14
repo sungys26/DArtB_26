@@ -161,7 +161,9 @@ SELECT ANIMAL_ID, ANIMAL_TYPE, DATETIME, INTAKE_CONDITION, NAME, SEX_UPON_INTAKE
   - ORDER BY는 기본적으로 오름차순이다.
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+--> 
+<img width="1267" height="623" alt="image" src="https://github.com/user-attachments/assets/b0f917fc-e8b3-4efa-bc7e-c30aa96a3ecf" />
+
 
 ## 🧩 문제 2
 
@@ -171,21 +173,32 @@ SELECT ANIMAL_ID, ANIMAL_TYPE, DATETIME, INTAKE_CONDITION, NAME, SEX_UPON_INTAKE
 
 ```
 - 문제에서 요구한 조건:
+값이 'Sick'인 동물만 조회해야 하며, ANIMAL_ID와 NAME 두 컬럼만 출력해야 한다.
 - WHERE 절로 옮긴 방식:
-- 정렬 기준이 있다면 사용한 기준:
+"아픈 동물"이라는 조건을 INTAKE_CONDITION = 'Sick'이라는 등호 비교식으로 바꿔서 WHERE 절에 작성했다.
+- 정렬 기준이 있다면 사용한 기준: 문제에서 "아이디 순으로 조회"하라고 했으므로 ORDER BY ANIMAL_ID를 사용했다.
 - 새로 배운 점:
+- WHERE 절은 FROM 다음, ORDER BY 이전에 위치한다.
+  - 문자열 비교 시에는 작은따옴표를 사용해야 하고,
+대소문자까지 정확히 일치해야 비교할 수 있다.
+  - SELECT에 나열하는 컬럼과 WHERE에서 조건으로 사용하는 컬럼은 서로 달라도 되며,
+두 경우에 포함되지 않는 컬럼도 조건절에서 사용 가능하다.
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+<img width="1183" height="596" alt="image" src="https://github.com/user-attachments/assets/a1f6f2b3-4ae2-43ea-b98f-29a83b7febc5" />
+
 
 ---
 
 # 4️⃣ 이번 주 회고
 
 ```
-1. SELECT, FROM, WHERE 중 가장 헷갈린 개념: 
+1. SELECT, FROM, WHERE 중 가장 헷갈린 개념: SELECT에 등장하지 않는 컬럼도 WHERE 조건으로
+쓸 수 있다는 걸 알게 되었고, 이 둘을 분리해서 생각하는 개념이 코드를 짤 때 헷갈렸습니다.
 2. 문제를 풀 때 가장 자주 확인하게 된 부분: FROM / WHERE / SELECT 순서를 잘 지켰는가
 3. 다음 주 문제 풀이에서 의식하고 싶은 습관:
+- 문제가 요구하는 조건을 먼저 확인해 보고 문장으로 정리하기. 이후에 WHERE 절로 변환하는 방법을 연습하기.
+또 문법 사용에서 대소문자나 따옴표를 빠트린 건 없는지 꼼꼼하게 확인하는 습관을 기르고 싶습니다.
 ```
 
 수고하셨습니다!
