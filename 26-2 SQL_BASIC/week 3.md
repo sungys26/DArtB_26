@@ -65,25 +65,28 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 ## 01.
 
 ```
-개념 이름:
-개념 설명:
-예시 쿼리:
+개념 이름: GROUP BY
+개념 설명: 특정 컬럼 값이 같은 행끼리 묶어 그룹별로 집계하는 구문.
+집계 함수 없이 SELECT에 쓴 컬럼은 반드시 GROUP BY에 포함해야 함.
+예시 쿼리: SELECT category, SUM(amount) FROM orders GROUP BY category;
 ```
 
 ## 02.
 
 ```
-개념 이름:
-개념 설명:
-예시 쿼리:
+개념 이름: HAVING
+개념 설명: GROUP BY로 묶은 뒤 집계 결과에 조건을 거는 구문.
+WHERE는 집계 전 행을, HAVING은 집계 후 그룹을 거르므로 집계 함수는 HAVING에서만 쓸 수 있음.
+예시 쿼리: SELECT category, SUM(amount) FROM orders GROUP BY category HAVING SUM(amount) >= 1000000;
 ```
 
 ## (선택) 03.
 
 ```
-개념 이름:
-개념 설명:
-헷갈린 점:
+개념 이름: 집계 함수 (COUNT / SUM / AVG / MAX / MIN)
+개념 설명: 여러 행을 하나의 값(개수, 합계, 평균, 최댓값, 최솟값)으로 요약하는 함수.
+COUNT(*)는 전체 행을 세고, 나머지는 NULL을 제외하고 계산함.
+예시 쿼리:ㅍSELECT COUNT(*), SUM(amount), AVG(amount), MAX(amount), MIN(amount) FROM orders;
 ```
 
 ---
@@ -95,6 +98,9 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 - 강의 수강 화면 캡처
 - 문제 풀이 정답 화면 캡처
 - SQL 실행 결과 화면 캡처
+
+<img width="516" height="901" alt="image" src="https://github.com/user-attachments/assets/e28ae1b8-30ff-4b9a-959a-7ec5f95a8a64" />
+
 
 ---
 
