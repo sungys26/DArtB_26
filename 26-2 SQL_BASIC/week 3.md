@@ -80,7 +80,7 @@ WHERE는 집계 전 행을, HAVING은 집계 후 그룹을 거르므로 집계 �
 예시 쿼리: SELECT category, SUM(amount) FROM orders GROUP BY category HAVING SUM(amount) >= 1000000;
 ```
 
-## (선택) 03.
+## 03.
 
 ```
 개념 이름: 집계 함수 (COUNT / SUM / AVG / MAX / MIN)
