@@ -115,22 +115,6 @@ COUNT(*)는 전체 행을 세고, 나머지는 NULL을 제외하고 계산함.
 풀이 과정:
 
 ```
-- 문제 요구사항:
-- 사용한 SQL 절:
-- 새로 배운 점:
-```
-
-# 3️⃣ 확인 문제
-
-프로그래머스는 로그인이 필요하므로, 로그인 후 문제 풀이를 진행해주세요.
-
-## 🧩 문제 1
-
-문제 링크: [최댓값 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/59415)
-
-풀이 과정:
-
-```
 SELECT MAX(DATETIME) AS 시간
 FROM ANIMAL_INS;
 ```
