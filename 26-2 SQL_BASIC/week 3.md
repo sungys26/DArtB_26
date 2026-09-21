@@ -120,7 +120,70 @@ COUNT(*)는 전체 행을 세고, 나머지는 NULL을 제외하고 계산함.
 - 새로 배운 점:
 ```
 
+# 3️⃣ 확인 문제
+
+프로그래머스는 로그인이 필요하므로, 로그인 후 문제 풀이를 진행해주세요.
+
+## 🧩 문제 1
+
+문제 링크: [최댓값 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/59415)
+
+풀이 과정:
+
+```
+SELECT MAX(DATETIME) AS 시간
+FROM ANIMAL_INS;
+```
+
+```
+- 문제 요구사항: 가장 최근에 들어온 동물의 보호 시작일 하나만 조회
+- 사용한 SQL 절: SELECT, MAX(), FROM
+- 새로 배운 점: MAX는 숫자뿐 아니라 날짜/시간 컬럼에도 쓸 수 있고, 가장 늦은(최근) 값을 반환한다.
+  ORDER BY DATETIME DESC LIMIT 1로도 풀 수 있다.
+```
+<img width="885" height="466" alt="image" src="https://github.com/user-attachments/assets/de538833-5263-4459-a7e0-f6d050daef5f" />
+
+
+## 🧩 문제 2
+
+문제 링크: [가장 비싼 상품 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/131697)
+
+풀이 과정:
+
+```
+- 사용한 집계 함수:
+- 집계 대상 컬럼:
+- 결과를 검증한 방법:
+```
+
 <!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+
+## 🧩 문제 3
+
+문제 링크: [고양이와 개는 몇 마리 있을까](https://school.programmers.co.kr/learn/courses/30/lessons/59040)
+
+풀이 과정:
+
+```
+- 그룹화 기준:
+- WHERE와 HAVING 중 사용한 절:
+- 처음 틀렸다면 틀린 이유:
+- 새로 배운 SQL 패턴:
+```
+
+<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+
+---
+
+# 4️⃣ 이번 주 회고
+
+```
+1. 문제를 SQL로 옮길 때 가장 어려웠던 부분:
+2. WHERE와 HAVING의 차이를 어떻게 이해했는지:
+3. 다음 주에 더 연습하고 싶은 문제 유형:
+```
+
+수고하셨습니다!
 
 ## 🧩 문제 2
 
