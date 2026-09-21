@@ -122,7 +122,7 @@ FROM ANIMAL_INS;
 ```
 - 문제 요구사항: 가장 최근에 들어온 동물의 보호 시작일 하나만 조회
 - 사용한 SQL 절: SELECT, MAX(), FROM
-- 새로 배운 점: MAX는 숫자뿐 아니라 날짜/시간 컬럼에도 쓸 수 있고, 가장 늦은(최근) 값을 반환한다.
+- 새로 배운 점: MAX는 숫자뿐 아니라 날짜/시간 컬럼에도 쓸 수 있고, 가장 늦은 값을 반환한다.
   ORDER BY DATETIME DESC LIMIT 1로도 풀 수 있다.
 ```
 <img width="885" height="466" alt="image" src="https://github.com/user-attachments/assets/de538833-5263-4459-a7e0-f6d050daef5f" />
@@ -135,12 +135,18 @@ FROM ANIMAL_INS;
 풀이 과정:
 
 ```
-- 사용한 집계 함수:
-- 집계 대상 컬럼:
-- 결과를 검증한 방법:
+SELECT MAX(PRICE) AS MAX_PRICE
+FROM PRODUCT;
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+```
+- 사용한 집계 함수: MAX()
+- 집계 대상 컬럼: PRICE
+- 결과를 검증한 방법: 예시 테이블에 쿼리를 적용해 결과가 22000 한 건으로 나오는지 확인했고,
+<SELECT PRICE FROM PRODUCT ORDER BY PRICE DESC LIMIT 1>처럼 다른 방식으로 구한 최댓값과 일치하는지도 비교했다.
+```
+
+<img width="1110" height="753" alt="image" src="https://github.com/user-attachments/assets/8202a696-7538-437c-83c4-a9cc7e24b26e" />
 
 ## 🧩 문제 3
 
@@ -149,13 +155,21 @@ FROM ANIMAL_INS;
 풀이 과정:
 
 ```
-- 그룹화 기준:
-- WHERE와 HAVING 중 사용한 절:
-- 처음 틀렸다면 틀린 이유:
-- 새로 배운 SQL 패턴:
+SELECT ANIMAL_TYPE, COUNT(*) AS count
+FROM ANIMAL_INS
+GROUP BY ANIMAL_TYPE
+ORDER BY ANIMAL_TYPE;
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+```
+` 그룹화 기준: ANIMAL_TYPE
+WHERE와 HAVING 중 사용한 절: 둘 다 사용하지 않음. 전체 행을 종별로 세는 문제라 행을 걸러내는 WHERE도, 그룹을 걸러내는 HAVING도 필요 없었다.
+처음 틀렸다면 틀린 이유: 해당 없음.
+새로 배운 SQL 패턴: GROUP BY로 묶고 COUNT(*)로 세고 ORDER BY로 정렬하는 "종류별 개수 세기" 패턴. 
+```
+
+<img width="1390" height="687" alt="image" src="https://github.com/user-attachments/assets/21e1373b-9c69-412c-b25c-54e45d3367c9" />
+
 
 ---
 
@@ -203,9 +217,13 @@ FROM ANIMAL_INS;
 # 4️⃣ 이번 주 회고
 
 ```
-1. 문제를 SQL로 옮길 때 가장 어려웠던 부분:
-2. WHERE와 HAVING의 차이를 어떻게 이해했는지:
-3. 다음 주에 더 연습하고 싶은 문제 유형:
+1. 문제를 SQL로 옮길 때 가장 어려웠던 부분: 문장으로 된 요구사항을 집계 함수(COUNT, MAX)와 GROUP BY로 바꾸는 부분.
+특히 "고양이를 먼저 조회"라는 조건을 ORDER BY로 옮기는 게 헷갈렸다.
+
+2. WHERE와 HAVING의 차이를 어떻게 이해했는지:WHERE는 그룹으로 묶기 전에 행을 걸러내고, HAVING은 GROUP BY로 묶은 뒤
+집계 결과를 기준으로 그룹을 걸러낸다.
+
+3. 다음 주에 더 연습하고 싶은 문제 유형: GROUP BY + HAVING 조합, 그리고 JOIN이 들어간 집계 문제.
 ```
 
 수고하셨습니다!
