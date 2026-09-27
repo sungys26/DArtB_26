@@ -111,7 +111,7 @@ WHERE
 <br>
 
 템플릿을 쓰면 좋지만, 이를 항상 쓰지 못할 수 있으므로 → **생산성 도구** 사용  
--> espanso - trigger 설정해서 템플릿 설정
+→ espanso - trigger 설정해서 템플릿 설정
 
 <br>
 
@@ -147,16 +147,52 @@ WHERE
 SELECT
  CAST(1 AS STRING) # 숫자 1을 문자 1로 변경
 ```
+→ BUT, 만약 `문자`→`숫자`처럼 변환할 수 없는 것들을 적용하면? : 에러  
+→ 이걸 막기 위해 **SAFE_** 사용
 
-
-
-### 03. SAFE_CAST
-
+**SAFE_CAST 사용법 예시**
+→ SAFE_가 붙은 함수는 변환이 실패할 경우 Null로 변환
 ```
-개념 이름:
-개념 설명:
-헷갈린 점:
+SELECT
+ SAFE_CAST("다트비" AS INT64)
 ```
+
+<br>
+
+## 4.3 문자열 함수 - CONCAT, SPLIT, REPLACE, TRIM, UPPER
+### 05. 문자열 함수
+
+**CONCAT 함수**
+```
+# 문자열을 붙이는 함수
+SELECT
+  CONCAT ("다트비", "야호") AS result
+```
+→ from 없이도 동작 어떻게 동작하는지?  
+concat 인자로 스트링이나 숫자를 넣으면 데이터를 직접 넣어준 것이기 때문에
+
+<br>
+
+**SPLIT 함수**
+→ [SPLIT(문자열 원본, 나눌 기준이 되는 문자)] 
+```
+# 문자열을 쪼개는/분리하는 함수
+SELECT
+  SPLIT("가, 나, 다", ",") AS result
+```
+
+<br>
+
+**REPLACE 함수**
+→ [SELECT(문자열 원본, 찾을 단어, 변경할 단어)] 
+```
+# 문자열에서 특정 단어를 수정하는 함수
+SELECT
+  REPLACE("바나나맛있다", "바나나", "송편") AS result
+```
+
+<br>
+
 
 ---
 
@@ -167,6 +203,9 @@ SELECT
 - 강의 수강 화면 캡처
 - 문제 풀이 정답 화면 캡처
 - SQL 실행 결과 화면 캡처
+
+<img width="1822" height="998" alt="image" src="https://github.com/user-attachments/assets/e169996b-70c0-4c57-9649-6c1869cbd361" />
+
 
 ---
 
