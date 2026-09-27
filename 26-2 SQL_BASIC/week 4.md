@@ -193,6 +193,34 @@ SELECT
 
 <br>
 
+**TRIM 함수**
+→ [TRIM(문자열 원본, 자를 단어)] 
+```
+# 문자열을 자르는 함수
+SELECT
+  TRIM("안뇽하세요", "하세요") AS trim_example
+```
+
+<br>
+
+**UPPER 함수**
+→ [UPPER(문자열 원본)] 
+```
+#영어 대문자 변환 함수
+SELECT
+  UPPER("am") AS upper_example
+```
+
+**총정리**
+| 함수이름 | 연산 |
+| --- | --- |
+| CONCAT | 문자열 붙이는 함수 |
+| SPLIT | 문자열 분리하기 |
+| REPLACE | 특정 단어 대체 |
+| TRIM | 문자열 자르기 |
+| UPPER | 영어 대문자 변환 |
+
+<br>
 
 ---
 
