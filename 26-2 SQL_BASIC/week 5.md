@@ -116,7 +116,7 @@ SELECT
 ```
 
 
-### 03. DATETIME 함수 - CURRENT_DATETIME, EXTRACT
+### 03. DATETIME 함수(1) - CURRENT_DATETIME, EXTRACT
 
 **CURRENT_DATETIME 함수**([time zone]) : 현재 DATETIME 출력
 ```sql
@@ -131,6 +131,39 @@ SELECT
 ```sql
 EXTRAT(part FROM datetime_expression)
 ```
+```sql
+SELECT 
+  EXTRACT(DATE FROM DATETIME "2024-01-02 14:00:00") AS date,
+  EXTRACT(YEAR FROM DATETIME "2024-01-02 14:00:00") AS year,
+  EXTRACT(MONTH FROM DATETIME "2024-01-02 14:00:00") AS month,
+  EXTRACT(DAY FROM DATETIME "2024-01-02 14:00:00") AS day,
+  EXTRACT(HOUR FROM DATETIME "2024-01-02 14:00:00") AS hour,
+  EXTRACT(MINUTE FROM DATETIME "2024-01-02 14:00:00") AS minute,
+```
+**요일을 추출할 경우** : [1,7] 범위의 값을 변환
+```sql
+EXTRACT(DAYOFWEEK FROM datetime_col)
+```
+
+### 04.  DATETIME 함수(2) - DATETIME_TRUNC
+
+**DEATETIME_TRUNC** : DATE와 HOUR만 남기고 자르기
+```sql
+SELECT
+ DATETIME "2026-10-03 11:56:36" AS original_data,
+ DATETIME_TRUNC(DATETIME "2026-10-03 11:56:36", DAY) AS day_trunc,
+ DATETIME_TRUNC(DATETIME "2026-10-03 11:56:36", YEAR) AS year_trunc,
+ DATETIME_TRUNC(DATETIME "2026-10-03 11:56:36", MONTH) AS month_trunc,
+ DATETIME_TRUNC(DATETIME "2026-10-03 11:56:36", HOUR) AS hour_trunc;
+```
+
+### 05.  DATETIME 함수(3) - PARSE_DATETIME, FORMAT_DATETIME
+**PARSE_DATETIME 함수** : 문자열로 저장된 것을 DATETIME으로 변환할 때 사용  
+→ 기본 형식 [PARSE_DATETIME('문자열의 형태', 'DATETIME 문자') AS datetime]
+```sql
+
+```
+✅ Format Elements 문서를 확인하면 %Y 등의 요소들이 의미하는 바를 확인할 수 있음
 
 ---
 
