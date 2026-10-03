@@ -83,8 +83,8 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 
 
 **정밀한 데이터 표기를 위한 개념** - millisecond, microsecond
-- **millisecond** : 1000분의 1초
-- **microsecond** : 1초보다 작은 개념으로 쪼갠 것
+- **millisecond** : 1/1,000초
+- **microsecond** : 1/1,000ms
 
 **쿼리에서의 활용** - 1704176819711ms / 2024-01-02 15:26:59
 ```sql
@@ -181,9 +181,9 @@ SELECT
 - DATETIME ➡️ 문자열 : FORMAT
 
 
-### 06. DATETIME 함수(4)
+### 06. DATETIME 함수(4) - LAST_DAY, DATETIME_DIFF
 
-**LAST_DAT 함수** : 자동으로 월의 마지막날을 계산하는 함수
+**LAST_DAY 함수** : 자동으로 월의 마지막 날을 계산하는 함수
 ```sql
 SELECT
 LAST_DAY(DATETIME '2026-10-03 11:56:36') AS last_day,
@@ -211,6 +211,38 @@ DATETIME "2021-01-01 15:30:00" AS second_datetime,
 )
 ```
 
+## 4.6 조건문 함수 
+### 07. 조건문 함수 - CASE_WHEN, IF
+```
+✅ 데이터 분석에 있어 전처리를 위해 필요한 함수
+✅ 조건에 따른 분기 처리가 필요하거나 다른 값을 표시하고 싶을 때 사용
+```
+
+**💡조건문이란?**   
+→ 특정 조건이 충족될 경우, 특정한 행동을 하는 함수  
+→ 데이터 분석에서 특정 카테고리를 하나로 합치는 전처리가 필요한 경우에 사용
+
+**CASE_WHEN 함수** : 여러 조건이 있을 경우
+```sql
+SELECT
+ CASE
+  WHEN 조건1 THEN 조건1이 참일 때 결과,
+  WHEN 조건2 THEN 조건2가 참일 때 결과,
+  ELSE 그 외 조건일 때 결과,
+END AS 새로운 컬럼_이름
+```
+✅ 조건 1,2에 모두 해당되면 앞선 순서를 따름
+✅ 문자열 함수에서 이슈가 자주 발생하는 편  
+
+
+**IF 함수** : 단일 조건일 경우
+```sql
+SELECT
+ IF(1=1, '동일한 결과', '동일하지 않은 결과') AS result1,
+ IF(1=2, '동일한 결과', '동일하지 않은 결과') AS result2)
+```
+
+
 ---
 
 # 2️⃣ 수행 인증란
@@ -220,6 +252,9 @@ DATETIME "2021-01-01 15:30:00" AS second_datetime,
 - 강의 수강 화면 캡처
 - 문제 풀이 정답 화면 캡처
 - SQL 실행 결과 화면 캡처
+
+<img width="490" height="532" alt="image" src="https://github.com/user-attachments/assets/cb34a8a1-04b5-4400-b46e-747573885848" />
+
 
 ---
 
