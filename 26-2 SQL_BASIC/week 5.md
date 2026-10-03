@@ -95,22 +95,41 @@ SELECT
  DATETIME(TIMESTAMP_MICROS(170417681971000), 'Asia/Seoul') AS datetime_value_asia;
 ```
 
-<br>
 
-### 02. TIMESTMP와 DATETIME 비교
-
-```
-개념 이름:
-개념 설명:
-예시 쿼리:
-```
-
-## (선택) 03.
+### 02. 시간 데이터끼리의 변환 - TIMESTAMP와 DATETIME 비교
 
 ```
-개념 이름:
-개념 설명:
-헷갈린 점:
+✅ 둘의 차이를 알고 변환할 수 있어야 table의 정보를 이해 확인 가능
+```
+
+**[TIMESTAMP vs DATETIME]**
+| | TIMESTAMP | DATETIME |
+| --- | --- | ---|
+| 타임존 | UTC | T(Time을 의미)
+| 시간 차이 | 한국시간 -9 | 한국zone 사용 시  한국과 동일 |
+
+**코드 예시**
+```sql
+SELECT
+ CURRENT_TIMESTAMP() AS timestamp_col,
+ DATETIME(CURRENT_TIMESTAMP(), 'Asia/Seoul') AS datetime_col
+```
+
+
+### 03. DATETIME 함수 - CURRENT_DATETIME, EXTRACT
+
+**CURRENT_DATETIME 함수**([time zone]) : 현재 DATETIME 출력
+```sql
+SELECT
+ CURRENT_DATE() AS current_date,
+ CURRENT_DATE("Asia/Seoul") AS asia_date,
+ CURRENT_DATETIME() AS current_datetime,
+ CURRENT_DATETIME("Asia/Seoul") AS current_datetime_asia;
+```
+
+**EXTRACT 함수** : DATETIME에서 일정 부분만 추출할 때 사용
+```sql
+EXTRAT(part FROM datetime_expression)
 ```
 
 ---
