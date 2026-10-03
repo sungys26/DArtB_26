@@ -63,7 +63,7 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 
 
 ## 4.4 날짜 및 시간 데이터 이해하기
-## 01. 시간 데이터 - DATE, DATETIME, TIMESTAMP 
+### 01. DATE, DATETIME, TIMESTAMP 
 
 ```
 ✅ 세부적으로 나뉘는 시간 데이터 타입의 대표적 타입 이해
@@ -83,12 +83,16 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 
 
 **정밀한 데이터 표기를 위한 개념** - millisecond, microsecond
-- **millisecond** :
+- **millisecond** : 1,000ms =
 - **microsecond** :
+쿼리에서의 활용
+```
+ㅇㅇ
+```
 
 
 
-## 02.
+### 02. TIMESTMP와 DATETIEM 비교
 
 ```
 개념 이름:
