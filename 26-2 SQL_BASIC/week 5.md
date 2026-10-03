@@ -61,7 +61,9 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 - CASE WHEN
 - IF
 
-## 01.
+
+## 4.4 날짜 및 시간 데이터 이해하기
+## 01. 시간 데이터 (DATE, DATETIME, TIMESTAMP)
 
 ```
 개념 이름:
