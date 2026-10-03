@@ -161,9 +161,55 @@ SELECT
 **PARSE_DATETIME 함수** : 문자열로 저장된 것을 DATETIME으로 변환할 때 사용  
 → 기본 형식 [PARSE_DATETIME('문자열의 형태', 'DATETIME 문자') AS datetime]
 ```sql
-
+SELECT
+ PARSE_DATETIME('%Y-%m-%d %H:%m:%s', '2026-10-03 11:56:36') AS parse_datetime;
 ```
 ✅ Format Elements 문서를 확인하면 %Y 등의 요소들이 의미하는 바를 확인할 수 있음
+
+
+**FORMAT_DATETIME 함수** : 특정 형태의 문자열 데이터로 변경하고 싶을 때 사용
+```sql
+SELECT
+ FORMAT_DATETIME("%c", DATETIME "2026-10-03 11:56:36") AS formatted;
+```
+✅ 결과
+<img width="1012" height="68" alt="image" src="https://github.com/user-attachments/assets/0a6f113c-816b-4493-a96a-a8b03ee87604" />
+
+
+**💡PARSE vs FORMAT** - 어떤 걸 어떤 상황에 사용해야 할까?
+- 문자열 ➡️ DATETIME : PARSE
+- DATETIME ➡️ 문자열 : FORMAT
+
+
+### 06. DATETIME 함수(4)
+
+**LAST_DAT 함수** : 자동으로 월의 마지막날을 계산하는 함수
+```sql
+SELECT
+LAST_DAY(DATETIME '2026-10-03 11:56:36') AS last_day,
+LAST_DAY(DATETIME '2026-10-03 11:56:36', MONTH) AS last_day_month,
+LAST_DAY(DATETIME '2026-10-03 11:56:36', WEEK) AS last_day_week,
+LAST_DAY(DATETIME '2026-10-03 11:56:36',', WEEK(SUNDAY)) AS last_day_week_sun,
+LAST_DAY(DATETIME '2026-10-03 11:56:36', WEEK(MONDAY)) AS last_day_week_mon
+```
+✅ 맨 아래 두 줄은 일요일 기준으로 마지막, 월요일 기준으로 마지막을 계산한 값  
+✅ 상황에 따라 알맞은 코드를 적용
+
+
+**DATETIME_DIFF** : 두 DATETIME의 차이를 계산하는 함수  
+→ 기본 형식 [DATETIME_DIFF(첫 DATETIME, 두번째 DATETIME, 궁금한 부분)]  
+```sql
+SELECT
+DATETIME_DIFF(first_datetime, second_datetime, DAY) AS day_diff1,
+DATETIME_DIFF(second_datetime, first_datetime, DAY) AS day_diff2,
+DATETIME_DIFF(first_datetime, second_datetime, MONTH) AS month_diff,
+DATETIME_DIFF(first_datetime, second_datetime, WEEK) AS week_diff,
+FROM (
+SELECT
+DATETIME "2024-04-02 10:20:00" AS first_datetime,
+DATETIME "2021-01-01 15:30:00" AS second_datetime,
+)
+```
 
 ---
 
