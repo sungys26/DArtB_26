@@ -83,12 +83,13 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 
 
 **정밀한 데이터 표기를 위한 개념** - millisecond, microsecond
-- **millisecond** : 1,000ms =
-- **microsecond** :
-쿼리에서의 활용
-```
-ㅇㅇ
-```
+- **millisecond** : 1000분의 1초
+- **microsecond** : 1초보다 작은 개념으로 쪼갠 것
+<br>쿼리에서의 활용 - 1704176819711ms / 2024-01-02 15:26:59
+(((
+SELECT
+ TIMESTAMP_MILLIS
+(((
 
 
 
