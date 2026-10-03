@@ -269,9 +269,11 @@ SELECT
 풀이 과정:
 
 ```
-- 장기/단기 대여를 나눈 기준: 30일 이상이면 장기, 미만이면 단기로 나누었다. 종료일-시작일로 나눈 후 날짜의 오차를 감안하여 +1 붙였다.
+- 장기/단기 대여를 나눈 기준: 30일 이상이면 장기, 미만이면 단기로 나누었다.
+(종료일-시작일)로 뺀 후 날짜의 오차를 감안하여 +1 붙였다.
 - 사용한 날짜 계산 방식: DATETIME_DIFF 사용하려 했으나, SQL에는 해당 함수가 없어 DATEDIFF로 변경하여 계산하였다.
 - CASE WHEN으로 만든 컬럼: IF 문으로 만들어버림 ... RENT_TYPE
++ FORMAT 함수 역시 MYSQL 프로그램에 맞게 변형
 ```
 <img width="1068" height="693" alt="image" src="https://github.com/user-attachments/assets/b441c293-b917-4ea7-b3f3-1b9bc7a7d29a" />
 
