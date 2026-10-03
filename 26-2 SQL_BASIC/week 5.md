@@ -82,7 +82,7 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 - GMT, UTC 둘은 약간의 차이가 있으나, 그 차이가 매우 미미함
 
 
-정밀한 데이터 표기를 위한 개념 - millisecond, microsecond
+**정밀한 데이터 표기를 위한 개념** - millisecond, microsecond
 - **millisecond** :
 - **microsecond** :
 
