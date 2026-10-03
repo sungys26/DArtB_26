@@ -92,7 +92,7 @@ SQL_BASIC 정규 과제는 매주 정해진 분량의 `초보자를 위한 BigQu
 
 
 
-### 02. TIMESTMP와 DATETIEM 비교
+### 02. TIMESTMP와 DATETIME 비교
 
 ```
 개념 이름:
