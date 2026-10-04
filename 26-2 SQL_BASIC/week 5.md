@@ -333,13 +333,27 @@ ORDER BY BOARD_ID DESC;
 풀이 과정:
 
 ```
-- GROUP BY 기준:
-- 평균을 계산한 방식:
-- HAVING에 사용한 조건:
-- 처음 헷갈렸던 점:
+- GROUP BY 기준: CAR_ID를 기준으로 그룹화했다.
+- 평균을 계산한 방식: AVG 함수를 써서 계산했고, DATEDIFF 계산을 먼저 한 뒤에 1을 더하여
+계산 오류가 없도록 했다. 
+- HAVING에 사용한 조건: 평균은 GROUP BY로 자동차별로 묶은 뒤에야 계산되는 집계 결과라서, 행을 거르는 WHERE가 아니라 그룹을 거르는 HAVING을 사용했다.
+- 처음 헷갈렸던 점: 어떤 함수를 어디서부터 어떻게, 어떤 순서로 써야할지가 가장 헷갈렸던 것 같다.
+특히 평균을 계산하면서 GROUP_BY와 HAVING의 순서가 헷갈렸다.
+프로그래머스 질의응답 게시글들을 통해 코드들을 참고하며 해결하였다.
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+사용한 SQL 코드
+```SQL
+SELECT CAR_ID,
+       ROUND(AVG(DATEDIFF(END_DATE, START_DATE) + 1), 1) AS AVERAGE_DURATION
+FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
+GROUP BY CAR_ID
+HAVING AVG(DATEDIFF(END_DATE, START_DATE) + 1) >= 7
+ORDER BY AVERAGE_DURATION DESC, CAR_ID DESC;
+```
+
+<img width="960" height="426" alt="image" src="https://github.com/user-attachments/assets/7481cc32-03e1-40e7-8543-96780f87aa1a" />
+
 
 ---
 
