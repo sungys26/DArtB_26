@@ -286,7 +286,7 @@ SELECT
 ```
 - 문제에서 요구한 연도: 2021년도
 - 사용한 날짜 조건: EXTRACT 함수를 사용하거나 WHERE LIKE 함수를 사용해서 2021년도의 물고기만을 선별할 수 있도록 했다.
-- 집계한 대상:
+- 집계한 대상: 2021년도에 잡힌 물고기의 수 (COUNT 문으로 집계)
 ```
 
 <img width="1187" height="727" alt="image" src="https://github.com/user-attachments/assets/6c3b93f9-7654-4896-b4d6-915f81d4ab75" />
@@ -301,13 +301,30 @@ SELECT
 풀이 과정:
 
 ```
-- 날짜 조건:
-- CASE WHEN으로 바꾼 값:
-- ELSE에 해당하는 경우:
-- 정렬 기준:
+- 날짜 조건: 2022년 10월 05일
+- CASE WHEN으로 바꾼 값: STATUS의 값들
+- ELSE에 해당하는 경우: ELSE를 사용하지 않았으나, 만약 사용했다면 세 개 조건 중 하나를 ELSE로 뺐을 것 같다.
+- 정렬 기준: 게시판 번호를 기준으로 내림차순으로 정리했다. 
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+사용 코드
+```SQL
+SELECT 
+  BOARD_ID,
+  WRITER_ID,
+  TITLE,
+  PRICE,
+ CASE WHEN STATUS = 'SALE' THEN '판매중'
+      WHEN STATUS = 'RESERVED' THEN '예약중'
+      WHEN STATUS = 'DONE' THEN '거래완료'
+      END AS STATUS
+FROM USED_GOODS_BOARD
+WHERE DATE_FORMAT(CREATED_DATE, '%Y-%m-%d') = '2022-10-05'
+ORDER BY BOARD_ID DESC;
+```
+
+<img width="942" height="482" alt="image" src="https://github.com/user-attachments/assets/c88c9136-d4f5-4fad-a945-5c07147913bc" />
+
 
 ## 🧩 문제 4
 
@@ -330,8 +347,15 @@ SELECT
 
 ```
 1. 날짜 함수 중 가장 헷갈린 함수:
+- FORMAT과 DATETIMEDIFF가 가장 헷갈렸다. BIGQUERY에 적용되는 함수인데 MYSQL에서는 사용되는 함수가 아니라서,
+약간의 수정을 거쳐서 코드를 짜야 했던 게 헷갈렸던 것 같다.
+- 순간적으로 어디에 뭘 넣어야 할지 좀 고민되는 순간들이 있었다. IF와 CASE WHEN의 경우가 그랬던 것 같다.
 2. CASE WHEN을 사용할 때 기억해야 할 문법:
+- 쉼표를 붙여넣지 않게 조심해야 한다.
+- ELSE와  END AS 를 어떻게 활용해야 할지에 대해 이해해야 한다.
+- END AS 뒤에 새로운 컬럼명 넣는 것을 기억하기
 3. 날짜/시간 데이터나 조건문을 활용해보고 싶은 분석 상황:
+- 음악앱 시간대별로 청취율이 높아지는 장르의 유형 등을 분석해 보면 좋을 것 같다.
 ```
 
 수고하셨습니다!
