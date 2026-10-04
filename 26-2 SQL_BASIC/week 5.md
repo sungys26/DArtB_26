@@ -284,12 +284,15 @@ SELECT
 풀이 과정:
 
 ```
-- 문제에서 요구한 연도:
-- 사용한 날짜 조건:
+- 문제에서 요구한 연도: 2021년도
+- 사용한 날짜 조건: EXTRACT 함수를 사용하거나 WHERE LIKE 함수를 사용해서 2021년도의 물고기만을 선별할 수 있도록 했다.
 - 집계한 대상:
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+<img width="1187" height="727" alt="image" src="https://github.com/user-attachments/assets/6c3b93f9-7654-4896-b4d6-915f81d4ab75" />
+<img width="1207" height="677" alt="image" src="https://github.com/user-attachments/assets/06ef65d6-723e-48a9-918f-2f0f2cb465b1" />
+
+
 
 ## 🧩 문제 3
 
