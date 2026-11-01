@@ -52,26 +52,49 @@ JOIN은 여러 테이블을 연결해서 분석 질문에 답하기 위해 반�
 
 ---
 
-# 1️⃣ 개념 정리
 
-아래 키워드 중 중요하다고 생각한 개념을 2개 이상 골라 짧게 정리해주세요. 3개보다 더 많이 정리하고 싶다면 자유롭게 항목을 추가해도 좋습니다.
-
-이번 주 키워드:
-- JOIN
-- INNER JOIN
-- LEFT JOIN
-- JOIN key
-- alias
-- NULL
-- 다중 JOIN
-
-## 01.
+## 5-2 JOIN 이해하기
+## 01. SQL JOIN
 
 ```
-개념 이름:
-개념 설명:
-예시 쿼리:
+✅ 서로 다른 데이터 테이블들을 연결하는 과정
 ```
+**💡SQL JOIN이란?**  
+- 서로 다른 데이터 테이블을 연결하는 과정
+- 공통적으로 존재하는 컬럼(=KEY)가 있다면 JOIN 가능
+- 일반적으로 id 값을 Key로 자주 사용, 특정 범위로도 가능함  
+
+`이해를 위한 예시`   
+```
+포켓몬 데이터와 트레이너 데이터를 JOIN 한다고 가정해보자.
+이때 두 데이터 테이블에는 공통된 컬럼이 존재하지 않지만, 
+대신 두 데이터를 이어주는 <트레이너가 포획한 포켓몬> 데이터가 존재한다.
+```
+<img width="1310" height="621" alt="image" src="https://github.com/user-attachments/assets/e13eff9b-aa9a-44a2-be1f-3ddd70c61196" />
+
+**1. 트레이너가 포획한 포켓몬 기준으로 트레이너 데이터 JOIN**
+
+`트레이너가 포획한 포켓몬(편의상 테이블 A)`
+| id | trainer_id | pokemon_id | catch_date | location |
+|----|-----------|-----------|-----------|----------|
+| 1 | 1 | 1 | 2023-01-14 | Seoul |
+| 2 | 2 | 4 | 2023-02-10 | Busan |
+| 3 | 3 | 3 | 2023-03-05 | Incheon |
+
+`트레이너(편의상 테이블 B)`
+| id | name | age | hometown | preferred_pokemon_type | badge_count | achievement_level |
+|----|------|-----|----------|------------------------|-------------|-------------------|
+| 1 | Ash | 16 | Seoul | Electric | 8 | Master |
+| 2 | K | 18 | Busan | Water | 6 | Advanced |
+| 3 | Peter | 20 | Gwangju | Rock | 7 | Expert |
+| 4 | Maya | 15 | Incheon | Grass | 5 | Advanced |
+| 5 | Gary | 17 | Daegu | Flying | 6 | Advanced |
+
+`풀이과정`
+1. 두 데이터의 공통된 KEY는 `trainer_id`와 `id`
+2. 기준이 되는 것은 A이므로 `id`에 해당하는 row를 테이블 A 뒤로 이어붙이기
+→ 이렇게 2개의 테이블을 붙일 경우 
+
 
 ## 02.
 
@@ -98,6 +121,9 @@ JOIN은 여러 테이블을 연결해서 분석 질문에 답하기 위해 반�
 - 강의 수강 화면 캡처
 - JOIN 문제 풀이 정답 화면 캡처
 - JOIN 전후 결과 row 수를 비교한 캡처 또는 메모
+
+<img width="1810" height="862" alt="image" src="https://github.com/user-attachments/assets/43f75ac0-9606-4fbf-8f50-11a1327f85f2" />
+
 
 ---
 
