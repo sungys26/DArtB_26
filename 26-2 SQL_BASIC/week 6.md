@@ -123,14 +123,38 @@ JOIN은 여러 테이블을 연결해서 분석 질문에 답하기 위해 반�
 | RIGHT JOIN | | ✅ | ✅ |
 | FULL JOIN | ✅ | ✅ | ✅ |
 
+<br>
 
-## (선택) 03.
+## 5.4 JOIN 쿼리 작성하기
+### 03. JOIN 쿼리 작성법
 
+**작성 흐름**
+1. 테이블 확인 : 테이블에 저장된 데이터, 컬럼 확인
+2. 기준 테이블 정의 : 가장 많이 참고할 기준 테이블 정의
+3. JOIN KEY 찾기 : 여러 테이블과 연결할 KEY 찾기
+4. 결과 예상하기 : 결과 테이블 예상해서 엑셀 등으로 작성
+5. 쿼리 작성/검증 : 예상한 결과와 동일한 결과인지 확인
+
+**💡작성 문법**
+```sql
+SELECT
+    A.col1,
+    A.col2,
+    B.col11,
+    B.col12
+FROM table1 AS A
+LEFT JOIN table2 AS B
+ON A.key = B.key # 테이블이 길어서 별칭(Alias ) 지칭 가능 
 ```
-개념 이름:
-개념 설명:
-헷갈린 점:
-```
+→ 항상 마지막에 `from`, `left/right`, `on` 들어가는 것 잊지 않기
+
+**종류별 쿼리 작성 차이 비교표**
+| JOIN 종류 | ON 필수 여부 | 쿼리 예시 |
+|-----------|:-----------:|-----------|
+| INNER JOIN | O | `FROM table_a AS A`<br>`INNER JOIN table_b AS B`<br>`ON A.key = B.key` |
+| LEFT/RIGHT JOIN | O | `FROM table_a AS A`<br>`LEFT/RIGHT JOIN table_b AS B`<br>`ON A.key = B.key` |
+| FULL JOIN | O | `FROM table_a AS A`<br>`FULL JOIN table_b AS B`<br>`ON A.key = B.key` |
+| CROSS JOIN | X | `FROM table_a AS A`<br>`CROSS JOIN table_b AS B` |
 
 ---
 
