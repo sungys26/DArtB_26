@@ -138,7 +138,7 @@ JOIN은 여러 테이블을 연결해서 분석 질문에 답하기 위해 반�
 **💡작성 문법**
 ```sql
 SELECT
-    A.col1,
+    A.col1, #컬럼이름
     A.col2,
     B.col11,
     B.col12
@@ -180,14 +180,27 @@ ON A.key = B.key # 테이블이 길어서 별칭(Alias ) 지칭 가능
 문제 링크: [조건에 맞는 도서와 저자 리스트 출력하기](https://school.programmers.co.kr/learn/courses/30/lessons/144854)
 
 풀이 과정:
-
 ```
-- 사용한 테이블:
-- JOIN key:
-- 날짜를 출력한 형식:
+- 사용한 테이블: BOOK과 AUTHOR 테이블
+- JOIN key: AUTHOR_ID를 JOIN 시켜서 하나의 테이블로 연결
+- 날짜를 출력한 형식: DATE_FORMAT 문법을 이용하여 숫자로 되어있는 컬럼을 문자열의 형태로 변형하여 출
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+**사용한 코드**
+```sql
+SELECT
+  B.BOOK_ID,
+  A.AUTHOR_NAME,
+  DATE_FORMAT(B.PUBLISHED_DATE, '%Y-%m-%d') AS PUBLISHED_DATE
+FROM BOOK AS B
+LEFT JOIN AUTHOR AS A
+ON B.AUTHOR_ID = A.AUTHOR_ID
+WHERE B.CATEGORY = '경제'
+ORDER BY B.PUBLISHED_DATE ASC
+```
+
+<img width="1598" height="752" alt="image" src="https://github.com/user-attachments/assets/59a8a8d9-2bf1-41e9-adbf-56156e755f95" />
+
 
 ## 🧩 문제 2
 
@@ -201,7 +214,19 @@ ON A.key = B.key # 테이블이 길어서 별칭(Alias ) 지칭 가능
 - 집계한 값:
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+**사용한 코드**
+```sql
+SELECT
+    P.PRODUCT_CODE,
+    SUM(P.PRICE * O.SALES_AMOUNT) AS SALES
+FROM PRODUCT AS P
+INNER JOIN OFFLINE_SALE AS O
+ON P.PRODUCT_ID = O.PRODUCT_ID
+GROUP BY P.PRODUCT_CODE
+ORDER BY SALES DESC, P.PRODUCT_CODE ASC
+```
+
+<img width="1572" height="761" alt="image" src="https://github.com/user-attachments/assets/38a25a55-a68a-4686-bfae-9eeec3aa3042" />
 
 ## 🧩 문제 3
 
@@ -210,12 +235,25 @@ ON A.key = B.key # 테이블이 길어서 별칭(Alias ) 지칭 가능
 풀이 과정:
 
 ```
-- 기준이 되는 왼쪽 테이블:
-- LEFT JOIN이 필요한 이유:
-- NULL이 발생하는 경우:
+- 기준이 되는 왼쪽 테이블: 들어온 기록이 없는 동물을 가려내야 하므로 ANIMAL_OUT 테이블이 기준
+- LEFT JOIN이 필요한 이유: LEFT_JOIN을 사용하면 기록이 없을 경우 NULL로 붙기 때문에 
+- NULL이 발생하는 경우: 한쪽 테이블에서 조건이 맞는 행이 없을 때 
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+**사용한 코드**
+```sql
+SELECT
+    O.ANIMAL_ID,
+    O.NAME
+FROM ANIMAL_OUTS AS O
+LEFT JOIN ANIMAL_INS AS I
+ON O.ANIMAL_ID = I.ANIMAL_ID
+WHERE I.ANIMAL_ID IS NULL
+ORDER BY O.ANIMAL_ID
+```
+
+<img width="1536" height="757" alt="image" src="https://github.com/user-attachments/assets/ba4175c6-d510-4cdc-b302-699621e0649d" />
+
 
 ## 🧩 문제 4
 
@@ -224,13 +262,25 @@ ON A.key = B.key # 테이블이 길어서 별칭(Alias ) 지칭 가능
 풀이 과정:
 
 ```
-- 사용한 테이블:
-- JOIN key:
-- 비교한 날짜 컬럼:
-- 정렬 기준:
+- 사용한 테이블: ANIMAL_INS와 ANIMAL_OUTS
+- JOIN key: ANIMAL_ID
+- 비교한 날짜 컬럼: 입소 기록과 출소 기록을 비교
+- 정렬 기준: 오름차순으로 정
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+**사용한 코드**
+```sql
+SELECT
+  I.ANIMAL_ID,
+  O.NAME
+FROM ANIMAL_INS AS I
+LEFT JOIN ANIMAL_OUTS AS O
+ON I.ANIMAL_ID = O.ANIMAL_ID
+WHERE I.DATETIME > O.DATETIME
+ORDER BY I.DATETIME ASC
+```
+
+<img width="1373" height="598" alt="image" src="https://github.com/user-attachments/assets/354c84c7-9e22-4e68-98b5-d157a278ae43" />
 
 ---
 
@@ -246,9 +296,9 @@ JOIN 개념이 헷갈린다면 아래 자료를 함께 참고해도 좋습니다
 # 5️⃣ 이번 주 회고
 
 ```
-1. INNER JOIN과 LEFT JOIN의 차이를 어떻게 이해했는지:
-2. JOIN 문제를 풀 때 가장 먼저 확인해야 할 것:
-3. JOIN 결과가 예상과 달랐던 경험이 있다면:
+1. INNER JOIN과 LEFT JOIN의 차이를 어떻게 이해했는지: 단순하게 INNER JOIN은 교집합만, LEFT JOIN은 왼쪽에 있는 테이블을 기준으로 
+2. JOIN 문제를 풀 때 가장 먼저 확인해야 할 것: 어떤 테이블을 이어 붙여야 하고, 그 둘 사이에 JOIN KEY가 무엇이 존재하는지 파악해야 한다
+3. JOIN 결과가 예상과 달랐던 경험이 있다면: 
 ```
 
 수고하셨습니다!
