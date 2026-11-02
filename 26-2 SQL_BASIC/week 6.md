@@ -199,7 +199,8 @@ WHERE B.CATEGORY = '경제'
 ORDER BY B.PUBLISHED_DATE ASC
 ```
 
-<img width="1598" height="752" alt="image" src="https://github.com/user-attachments/assets/59a8a8d9-2bf1-41e9-adbf-56156e755f95" />
+<img width="1410" height="602" alt="image" src="https://github.com/user-attachments/assets/60fc323d-6357-4cac-87df-41d06c98481a" />
+
 
 
 ## 🧩 문제 2
