@@ -213,7 +213,7 @@ SELECT
 - `CASE WHEN` : 조건에 따라 다른 값을 출력, 조건이 여러 개일 때 사용
 - `IF` : 단일 조건일 때 사용
 
-**헷갈리는 부분 정리**
+**📌헷갈리는 부분 정리**
 ```
 - 여러 조건에 해당하면 앞서 작성한 조건이 우선된다
 - 조건에 쉼표를 붙이지 않도록 주의한다
@@ -279,7 +279,7 @@ AVG(DATETIME_DIFF(END_DATE, START_DATE, DAY) + 1)
 **작성 방법 및 주의사항**  
 - 테이블 확인 → 기준 테이블 정의 → JOIN KEY 찾기 → 결과 예상 → 쿼리 작성
 - 문법은 항상 FROM, LEFT/INNER JOIN, ON 순서
-- 
+  
 
 **활용한 코드**
 ```SQL
@@ -304,6 +304,10 @@ ORDER BY O.ANIMAL_ID
 - SQL 실행 결과 화면 캡처
 - 전체 개념 정리 노트 캡처
 
+<img width="1347" height="667" alt="image" src="https://github.com/user-attachments/assets/36765f15-f40e-48ed-904a-2f6fb0f83e6f" />
+<img width="1313" height="438" alt="image" src="https://github.com/user-attachments/assets/3b028009-45c3-4631-a6fc-b623b3009b94" />
+
+
 ---
 
 # 3️⃣ 복습 문제
@@ -317,13 +321,21 @@ ORDER BY O.ANIMAL_ID
 풀이 과정:
 
 ```
-- 문제 요구사항:
-- 첫 번째 정렬 기준:
-- 두 번째 정렬 기준:
-- 복습한 점:
+- 문제 요구사항: 모든 동물의 아이디, 이름, 보호 시작일을 이름 순으로 조회하되, 이름이 같으면 보호를 나중에 시작한 동물을 먼저 표기
+- 첫 번째 정렬 기준: NAME 오름차순
+- 두 번째 정렬 기준: DATETIME 내림차순
+- 복습한 점: ORDER BY는 기본이 오름차순이라 내림차순은 DESC를 직접 써야 하고, 기준이 여러 개일 때는 쉼표로 이어 쓰며 앞 기준이 같을 때만 뒤 기준이 적용
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+사용한 코드
+```sql
+SELECT ANIMAL_ID, NAME, DATETIME
+FROM ANIMAL_INS
+ORDER BY NAME ASC, DATETIME DESC;
+```
+
+<img width="1556" height="670" alt="image" src="https://github.com/user-attachments/assets/7b8d5529-689a-4263-a77e-5b5830366f5c" />
+
 
 ## 🧩 문제 2
 
@@ -332,13 +344,25 @@ ORDER BY O.ANIMAL_ID
 풀이 과정:
 
 ```
-- 그룹화 기준:
-- 제외해야 하는 값:
-- HAVING 조건:
-- 복습한 점:
+- 그룹화 기준: NAME 
+- 제외해야 하는 값: 이름이 없는 동물 / 즉 null인 경우
+- HAVING 조건: COUNT(*) >= 2로 두 번 이상 쓰인 이름만 필터링 
+- 복습한 점: HAVING은 묶은 뒤 그룹을 필터링, 그룹을 묶은 뒤에 계산되는 조건이므로 HAVING을 사용
+NULL은 `= NULL`이 아니라 `IS NULL` / `IS NOT NULL`로 비교
 ```
 
-<!-- 정답을 맞추게 되면, 정답입니다. 이 부분을 캡처해서 이 주석을 지우시고 첨부해주시면 됩니다. -->
+사용한 코드
+```sql
+SELECT NAME, COUNT(*) AS COUNT
+FROM ANIMAL_INS
+WHERE NAME IS NOT NULL
+GROUP BY NAME
+HAVING COUNT(*) >= 2
+ORDER BY NAME;
+```
+
+<img width="1500" height="647" alt="image" src="https://github.com/user-attachments/assets/43827034-3180-43bc-b566-b3f9ae2d15e8" />
+
 
 ---
 
