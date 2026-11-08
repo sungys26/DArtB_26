@@ -155,7 +155,6 @@ FROM PRODUCT;
 - 전체 행을 세고 싶을 때는 COUNT(*)를 활용, 나머지는 NULL을 제외하고 계산한다
 - MAX는 숫자뿐 아니라 날짜와 시간 컬럼에도 사용 가능하다
 
-<br>
 
 ## WEEK 4
 ### 05. 쿼리 작성 순서와 템플릿 설정
@@ -205,17 +204,95 @@ SELECT
 ```
 
 
-왜 중요한가: 보이는 값과 저장된 타입이 다르면 계산이나 비교가 틀어지기 때문입니다.
-정의: CAST는 데이터 타입을 바꾸는 함수입니다. SAFE_CAST는 변환에 실패하면 에러 대신 NULL을 반환합니다.
-학습한 내용: 대표 타입은 숫자, 문자, 시간·날짜, 부울(True/False)입니다. 예를 들어 부울 값이 문자열 ‘true’/’false'로 저장된 경우에 변환이 필요합니다. 문자를 숫자로 바꾸는 것처럼 변환할 수 없는 값에 CAST를 쓰면 에러가 납니다.
-활용: 이번 주 문제는 문자열 조건(LIKE, UPPER, LEFT) 위주여서 CAST를 직접 쓴 적은 없습니다. 이 항목은 개념과 예시 위주로 정리하게 됩니다.
-예시 코드:
+## WEEK 5
+### 07. CASE WHEN, IF
+```
+✅ 조건에 따라 값을 나누거나 카테고리를 합치는 전처리에 사용
+```
+**문법 정의**
+- `CASE WHEN` : 조건에 따라 다른 값을 출력, 조건이 여러 개일 때 사용
+- `IF` : 단일 조건일 때 사용
+
+**헷갈리는 부분 정리**
+```
+- 여러 조건에 해당하면 앞서 작성한 조건이 우선된다
+- 조건에 쉼표를 붙이지 않도록 주의한다
+- ELSE와 END AS를 붙이는 것 잊지 말고, 컬럼명 역시 빠트리지 말아야 한다
+```
+
+**활용한 코드**
+```SQL
+SELECT
+  BOARD_ID, WRITER_ID, TITLE, PRICE,
+  CASE WHEN STATUS = 'SALE' THEN '판매중'
+       WHEN STATUS = 'RESERVED' THEN '예약중'
+       WHEN STATUS = 'DONE' THEN '거래완료'
+  END AS STATUS
+FROM USED_GOODS_BOARD
+WHERE DATE_FORMAT(CREATED_DATE, '%Y-%m-%d') = '2022-10-05'
+ORDER BY BOARD_ID DESC;
+```
+
+---
+
+### 08. 날짜, 시간 함수 - EXTRACT, DATETIME_DIFF, FORMAT_DATETIME, PARSE_DATETIME
 
 ```
-개념 이름:
-개념 설명:
-아직 헷갈리는 점:
+✅ 날짜와 시간을 표현하는 데 있어서 활용하는 함수
+✅ 기간 계산과 연도, 월별 집계
 ```
+**문법 정의**
+- `EXTRACT` : 날짜, 시간 컬럼에서 연, 월, 일과 같이 일부만 추출
+- `DATETIME_DIFF` : 두 시점의 차이를 계산
+- `FORMAT_DATETIME` : DATETIME을 문자열로 변환
+- `PARSE_DATETIME` : 문자열을 DATETIME으로 변환
+
+**추가적으로 학습한 내용 정리**
+- DATE는 날짜만, DATETIME은 타임존 없는 날짜와 시간
+- TIMESTAMP는 UTC 기준의 시점이라 한국 시간과 9시간 차이
+
+❗프로그래머스와 MySQL에서 사용하는 형태가 달랐음
+```
+-- MySQL (프로그래머스)
+AVG(DATEDIFF(END_DATE, START_DATE) + 1)
+
+-- BigQuery 대응
+AVG(DATETIME_DIFF(END_DATE, START_DATE, DAY) + 1)
+```
+
+
+## WEEK 6
+### 09. JOIN - INNER, LEFT 등
+```
+✅ 여러 테이블을 하나로 연결하는 작업
+✅ 통합된 하나의 테이블에서 원하는 조건의 행들을 추출 가능
+```
+**문법 정의**
+- `JOIN` : 공통된 컬럼이 존재하는 다른 테이블 두 개를 하나의 테이블로 연결
+- `INNER JOIN` : 두 테이블의 공통된 요소만 연결
+- `LEFT/RIGHT JOIN` : 왼쪽/오른쪽 테이블이 기준이 되어 연결되는 함수
+  - 기준이 되는 테이블의 반대 방향에 짝이 될 것이 없으면 NULL 처리가 된다
+
+**집합의 관점으로 이해하는 JOIN의 종류**
+<img width="1282" height="508" alt="image" src="https://github.com/user-attachments/assets/9ca372d2-d011-4000-86a2-ffa496a0ec33" />
+
+**작성 방법 및 주의사항**  
+- 테이블 확인 → 기준 테이블 정의 → JOIN KEY 찾기 → 결과 예상 → 쿼리 작성
+- 문법은 항상 FROM, LEFT/INNER JOIN, ON 순서
+- 
+
+**활용한 코드**
+```SQL
+SELECT O.ANIMAL_ID, O.NAME
+FROM ANIMAL_OUTS AS O
+LEFT JOIN ANIMAL_INS AS I
+ON O.ANIMAL_ID = I.ANIMAL_ID
+WHERE I.ANIMAL_ID IS NULL
+ORDER BY O.ANIMAL_ID
+```
+- **📌헷갈렸던 부분** : 반드시 `ON` 사용하기 (CROSS만 ON이 필요하지 않다)
+
+<br>
 
 ---
 
@@ -271,14 +348,18 @@ SELECT
 
 ```
 1. SQL을 배우기 전과 비교했을 때 달라진 점:
-- 
+- 기본적인 코드의 흐름과 쿼리 작성의 매커니즘을 이해하게 되었습니다.
+쿼리를 짜기 전에 고민해야 하는 부분이 무엇인지, 원하는 결과를 보기 위해서는 어떤 코드를 적용하면 될지
+알게 되어서 데이터를 보다 편리하게 다루게 된 것 같습니다.
 
 2. 가장 도움이 되었던 과제 또는 문제 유형:
 - 프로그래머스를 통해 복습하는 것이 가장 도움이 되었습니다. 이론만 들었을 때는 이해가 되지 않던 것들이
 실습을 통해 실제로 코드를 작성해 보면서 정리가 되었던 것 같습니다. 특히 내가 무엇을 이해하지 못했는지 확인하는 데에 큰 도움이 되었습니다.
 
 3. 가장 어려웠던 개념:
--
+- 개인적으로는 CASE WHEN과 IF 등의 조건문 함수들이 조금 어려웠습니다.
+조건 설정도 어떻게 해야 할지 고민이 되었었고, 쉼표나 순서 등 자잘한 부분들에서 실수가 많아 프로그래머스를 푸는 데에 어려움을 느꼈습니다.
+
 
 4. 앞으로 데이터 분석이나 프로젝트에서 SQL을 어떻게 활용해보고 싶은지:
 - 상황에 맞게 필요한 데이터를 추출할 수 있는 기본적인 지식을 습득한 만큼,
